@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/subscription" name="SubscriptionService" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <log level="full">
+                <property name="POSITION" value="START"/>
+            </log>
+            <clone id="subs">
+                <target endpoint="CRMEP"/>
+                <target endpoint="SubscriptionEP"/>
+            </clone>
+        </inSequence>
+        <outSequence>
+            <log level="full">
+                <property name="position" value="Beginning out sequence"/>
+            </log>
+            <log level="full">
+                <property name="POSITION" value="BEFORE AGGREGATE"/>
+            </log>
+            <property name="subs" scope="default">
+                <value xmlns=""/>
+            </property>
+            <aggregate id="subs">
+                <correlateOn expression="json-eval($.id)"/>
+                <completeCondition>
+                    <messageCount max="2" min="2"/>
+                </completeCondition>
+                <onComplete enclosingElementProperty="subs" expression="json-eval($)">
+                    <log level="full">
+                        <property name="position" value="Aggregated"/>
+                    </log>
+                </onComplete>
+            </aggregate>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+            <respond/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>

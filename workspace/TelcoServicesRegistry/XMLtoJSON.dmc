@@ -1,0 +1,15 @@
+map_S_subscriber_S_customer = function(){ 
+var outputcustomer={};
+var SPLIT_2_0 = '';
+
+SPLIT_2_0 = inputsubscriber.name.split(' ');
+outputcustomer =  {};
+outputcustomer.firstname = SPLIT_2_0[0];
+outputcustomer.lastname = SPLIT_2_0[1];
+outputcustomer.phone = inputsubscriber.mobile;
+return outputcustomer;
+};
+
+
+
+

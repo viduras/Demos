@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/subsjson" name="SubsServiceJSON" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <call>
+                <endpoint key="SubscribersEP"/>
+            </call>
+            <log description="Before" level="custom">
+                <property name="POSITION" value="Before the for each"/>
+            </log>
+            <foreach expression="//subscriber" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                <sequence>
+                    <log level="custom">
+                        <property name="Position" value="after for each"/>
+                    </log>
+                    <datamapper config="gov:datamapper/XMLtoJSON.dmc" description="XMLtoJSON" inputSchema="gov:datamapper/XMLtoJSON_inputSchema.json" inputType="XML" outputSchema="gov:datamapper/XMLtoJSON_outputSchema.json" outputType="XML" xsltStyleSheet="gov:datamapper/XMLtoJSON_xsltStyleSheet.xml"/>
+                    <log level="full"/>
+                    <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+                    <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+                </sequence>
+            </foreach>
+            <log description="After" level="full">
+                <property name="Pos" value="End"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

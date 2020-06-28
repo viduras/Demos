@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/subscriber" name="SubscriberService" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <log description="In"/>
+            <call>
+                <endpoint key="SubscribersEP"/>
+            </call>
+            <log description="Out" level="full"/>
+            <xslt key="conf:myresources/subscribers.xslt"/>
+            <log level="full">
+                <property name="POSITION" value="End"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="SubscriberService" groupId="com.example.SubsServiceTransform.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SubscriberService.xml</file>
+    </artifact>
+    <artifact name="SubscribersEP" groupId="com.example.SubsServiceTransform.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/SubscribersEP.xml</file>
+    </artifact>
+    <artifact name="SubsServiceJSON" groupId="com.example.SubsServiceTransform.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SubsServiceJSON.xml</file>
+    </artifact>
+    <artifact name="SubsServiceJSONIter" groupId="com.example.SubsServiceTransform.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SubsServiceJSONIter.xml</file>
+    </artifact>
+    <artifact name="SubscriptionService" groupId="com.example.SubsServiceTransform.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SubscriptionService.xml</file>
+    </artifact>
+    <artifact name="CRMEP" groupId="com.example.SubsServiceTransform.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CRMEP.xml</file>
+    </artifact>
+    <artifact name="SubscriptionEP" groupId="com.example.SubsServiceTransform.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/SubscriptionEP.xml</file>
+    </artifact>
+    <artifact name="VASService" groupId="com.example.SubsServiceTransform.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/VASService.xml</file>
+    </artifact>
+    <artifact name="ExampleService" groupId="com.example.SubsServiceTransform.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/ExampleService.xml</file>
+    </artifact>
+</artifacts>

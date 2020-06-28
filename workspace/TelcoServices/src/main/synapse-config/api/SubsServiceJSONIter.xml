@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/subsiter" name="SubsServiceJSONIter" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <call>
+                <endpoint key="SubscribersEP"/>
+            </call>
+            <log level="full">
+                <property name="POSITION" value="Before Iter"/>
+            </log>
+            <iterate expression="//subscriber" id="subs" sequential="true">
+                <target>
+                    <sequence>
+                        <log level="full">
+                            <property name="POSITION" value="After Iter"/>
+                        </log>
+                        <datamapper config="gov:datamapper/XMLtoJSON.dmc" description="XMLtoJSON" inputSchema="gov:datamapper/XMLtoJSON_inputSchema.json" inputType="XML" outputSchema="gov:datamapper/XMLtoJSON_outputSchema.json" outputType="JSON" xsltStyleSheet="gov:datamapper/XMLtoJSON_xsltStyleSheet.xml"/>
+                        <log level="full">
+                            <property name="POSITION" value="Mapped"/>
+                        </log>
+                        <property name="messageType" scope="axis2" type="STRING" value="text/json"/>
+                        <property name="ContentType" scope="axis2" type="STRING" value="text/json"/>
+                        <log level="full">
+                            <property name="POSITION" value="Beore Loopback"/>
+                        </log>
+                    </sequence>
+                </target>
+            </iterate>
+        </inSequence>
+        <outSequence>
+            <property name="customers" scope="default" type="STRING" value=""/>
+            <log level="full">
+                <property name="POSITION" value="OUT SEQ"/>
+            </log>
+            <aggregate id="subs">
+                <correlateOn expression="json-eval($.object)"/>
+                <completeCondition>
+                    <messageCount max="-1" min="-1"/>
+                </completeCondition>
+                <onComplete enclosingElementProperty="customers" expression="$body/*[1]">
+                    <log>
+                        <property name="POSITION" value="After Aggregated"/>
+                    </log>
+                </onComplete>
+            </aggregate>
+            <log level="full">
+                <property name="POSITION" value="End"/>
+            </log>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>
