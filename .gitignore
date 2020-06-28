@@ -1,0 +1,8 @@
+workspace/.tmp/
+workspace/.metadata/
+workspace/TelcoService/.project/
+workspace/TelcoServiceRegistry/.project/
+workspace/TelcoServiceRegistry/.meta/
+workspace/TelcoServiceRegistry/.settings/
+workspace/TelcoServiceRegistry/.classpath/
+workspace/TelcoServiceCompositeApplication/.project/
